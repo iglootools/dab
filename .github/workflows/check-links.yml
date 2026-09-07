@@ -38,9 +38,10 @@ jobs:
           # The input glob has to be repeated: setting `args` replaces the action's default
           # value, which is where the paths would otherwise come from.
           #
-          # --timeout/--max-retries: asciinema.org answers in well under a second from a
-          # normal connection but timed out repeatedly from GitHub-hosted runners at the
-          # 20s default. Hosts that reject runners outright are listed in .lycheeignore.
+          # --timeout/--max-retries: kept above the 20s default as a margin for genuinely
+          # slow hosts. It was originally raised for asciinema.org, which never passed at
+          # any timeout and is now excluded in .lycheeignore alongside the other hosts that
+          # reject GitHub-hosted runners rather than being broken.
           args: >-
             --accept '200..=299,300..=399' --insecure --no-progress
             --timeout 30 --max-retries 3 './**/*.md'
