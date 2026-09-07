@@ -16,20 +16,10 @@ Runtime behavior, design decisions, and external commands reference: @docs/inter
 
 Before writing any code, apply the guidelines at write time, not as a post-hoc review. Walk the implementation checklist item by item before considering a task done.
 
-Common guidelines (shared across iglootools projects):
-
-@../common-guidelines/coding.md
-@../common-guidelines/python.md
-
-The two above govern every edit, so they are imported. The rest of the shared set is triggered by a
-specific file — read the whole file before touching one of these, not just the section that looks
-relevant:
-
-| Read | Before touching |
-|---|---|
-| `../common-guidelines/python-tooling.md` | `pyproject.toml`, `mise.toml`, `uv.lock` — or adding a dependency, a mise task, or anything about building and publishing |
-| `../common-guidelines/ide.md` | `.vscode/`, `.claude/settings.json`, `*.code-workspace`, `[tool.pyright]` |
-| `../common-guidelines/project-setup.md` | `.github/workflows/`, `renovate.json`, `dependabot.yml`, `.gitignore` |
+Common guidelines shared across iglootools projects come from the `iglootools` plugin, enabled for
+this repository in `.claude/settings.json`. It loads the always-on guidelines into every session,
+and reads the file-triggered ones when a change reaches them. See
+@docs/setup-development-environment.md to install it.
 
 Project-specific guidelines: @docs/guidelines.md
 
