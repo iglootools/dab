@@ -60,13 +60,14 @@ required after changing them.
 ## Claude Code Setup
 
 Both plugins below are enabled for this repository in `.claude/settings.json`, but a plugin the
-project enables still has to be installed once per machine. Register the marketplace, then
-install the shared iglootools guidelines:
+project enables still has to be installed once per machine.
 
-```bash
-claude plugin marketplace add iglootools/common-guidelines
-claude plugin install iglootools@iglootools-plugins --scope project
-```
+For the shared iglootools guidelines, follow
+[Install it per project](https://github.com/iglootools/common-guidelines#install-it-per-project-not-per-user)
+in the shared guidelines, then
+[Updating one project](https://github.com/iglootools/common-guidelines#updating-one-project) —
+or [every project at once](https://github.com/iglootools/common-guidelines#updating-every-project)
+— whenever a new version is released. The commands live there so they are corrected in one place.
 
 Install the Pyright LSP plugin so Claude resolves symbols instead of grepping for them. Follow
 [Claude Code setup in the shared guidelines](https://github.com/iglootools/common-guidelines/blob/main/ide.md#claude-code)
