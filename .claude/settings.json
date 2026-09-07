@@ -1,4 +1,8 @@
 {
+  "enabledPlugins": {
+    "pyright-lsp@claude-plugins-official": true,
+    "iglootools@iglootools-plugins": true
+  },
   "extraKnownMarketplaces": {
     "iglootools-plugins": {
       "source": {
@@ -6,9 +10,5 @@
         "repo": "iglootools/common-guidelines"
       }
     }
-  },
-  "enabledPlugins": {
-    "pyright-lsp@claude-plugins-official": true,
-    "iglootools@iglootools-plugins": true
   }
 }

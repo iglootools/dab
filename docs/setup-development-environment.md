@@ -60,12 +60,11 @@ required after changing them.
 ## Claude Code Setup
 
 Both plugins below are enabled for this repository in `.claude/settings.json`, but a plugin the
-project enables still has to be installed once per machine. Claude Code reports it as not
-installed and prints the command until you do.
-
-Install the shared iglootools guidelines:
+project enables still has to be installed once per machine. Register the marketplace, then
+install the shared iglootools guidelines:
 
 ```bash
+claude plugin marketplace add iglootools/common-guidelines
 claude plugin install iglootools@iglootools-plugins --scope project
 ```
 
