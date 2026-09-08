@@ -58,7 +58,7 @@ jobs:
     - uses: jdx/mise-action@3c2e0cf82a5b2e5249f0d3635a4d83d0ae861518 # v4
       with:
         # renovate: datasource=github-releases depName=jdx/mise
-        version: 2026.8.10
+        version: 2026.9.2
     - name: Resolve PyPI-compatible version
       # Derive the dev version from the base *release* version in the tag, not from the full
       # VCS-derived version. The previous implementation did
