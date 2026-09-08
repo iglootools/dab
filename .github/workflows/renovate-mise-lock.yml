@@ -1,62 +1,28 @@
 name: renovate-mise-lock
 
-# Renovate's hosted runner has no `mise` binary, so it can bump tool versions in
-# mise.toml but cannot regenerate mise.lock (the per-platform checksum/attestation
-# lockfile). That leaves the renovate/artifacts check red. This workflow runs mise
-# on Renovate branches to regenerate mise.lock and commits it back if it changed.
-
 on:
   push:
     branches:
       - 'renovate/**'
 
-# Avoid overlapping runs racing to push to the same branch.
+# Avoid overlapping runs racing to push to the same branch. Stays here rather than in the shared
+# workflow because concurrency governs the run these triggers create.
 concurrency:
   group: renovate-mise-lock-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   mise-lock:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
     permissions:
+      # Must be granted here. `permissions` in the called workflow is a ceiling on what the
+      # caller allowed, not a grant of its own, so without this the job regenerates mise.lock
+      # and then cannot push it.
       contents: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-
-      # Install the mise binary only. We must NOT let mise-action run its default
-      # `mise install`: when a mise.lock is present it auto-adds `--locked`, which
-      # *fails* on a tool version that's in mise.toml but not yet in the lock —
-      # exactly the case this workflow exists to fix. So we regenerate explicitly.
-      #
-      # `env: false` follows from that. mise-action exports mise's [env] into the job
-      # after setup, and `mise.toml` resolves UV_PYTHON from `{{ tools.python.path }}` —
-      # a template that errors with "Field `python` is not defined" when no python is
-      # installed, which is precisely the state `install: false` leaves behind. The
-      # export is pointless here anyway: the only step after this one is `mise lock`,
-      # which needs the binary and the config, not a tool environment.
-      - name: Setup mise
-        uses: jdx/mise-action@3c2e0cf82a5b2e5249f0d3635a4d83d0ae861518 # v4
-        with:
-          # renovate: datasource=github-releases depName=jdx/mise
-          version: 2026.8.10
-          install: false
-          env: false
-
-      # `mise lock` regenerates checksums/URLs for all platforms in the lockfile,
-      # picking up any tool versions Renovate bumped in mise.toml.
-      - name: Regenerate mise.lock
-        run: mise lock
-
-      - name: Commit mise.lock if changed
-        run: |
-          if git diff --quiet -- mise.lock; then
-            echo "mise.lock is up to date."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mise.lock
-          git commit -m "chore(deps): regenerate mise.lock"
-          git push
+    uses: iglootools/common-guidelines/.github/workflows/reusable-renovate-mise-lock.yml@1d09a131ac5e8a2bc969b0bea48513ae4bb40637 # v1.5.0
+    with:
+      # Pinned here, not in the shared workflow: project-setup.md requires it to match the
+      # version this project's mise.lock was generated with, and the custom manager below lives
+      # in this repository's renovate.json. The input is named `version` because that is what
+      # that manager matches — see the shared workflow's input description.
+      # renovate: datasource=github-releases depName=jdx/mise
+      version: 2026.9.2

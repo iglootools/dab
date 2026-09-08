@@ -31,10 +31,10 @@ concurrency:
 
 env:
   MISE_EXPERIMENTAL: true
-  # Assert that syncing will not change uv.lock, so a stale lockfile fails the build
-  # instead of being papered over by an implicit re-resolve. Set as an environment
-  # variable rather than a --locked flag so the [deps.uv] command in mise.toml stays
-  # identical to local runs and only the strictness differs.
+  # Assert that syncing will not change uv.lock, so a stale lockfile fails the build instead
+  # of being papered over by an implicit re-resolve. Set as an environment variable rather
+  # than a --locked flag so the [deps.uv] command in mise.toml stays identical to local runs
+  # and only the strictness differs.
   UV_LOCKED: 1
 
 jobs:
@@ -45,8 +45,8 @@ jobs:
       max-parallel: 2
       matrix:
         python-version: [
-          "3.12.13", 
-          # Let's disable 3.14 in CI for now to save on CI minutes. 
+          "3.12.13",
+          # Let's disable 3.14 in CI for now to save on CI minutes.
           # "3.14.3"
         ]
     name: test (python ${{ matrix.python-version }})
@@ -62,7 +62,7 @@ jobs:
       - uses: jdx/mise-action@3c2e0cf82a5b2e5249f0d3635a4d83d0ae861518 # v4
         with:
           # renovate: datasource=github-releases depName=jdx/mise
-          version: 2026.8.10
+          version: 2026.9.2
       - run: mise use python@${{ matrix.python-version }}
       # Unlocked on purpose: the matrix python version is not in mise.lock.
       - run: mise install
