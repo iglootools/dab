@@ -47,13 +47,13 @@
 
 Accept the recommended extensions when VSCode prompts on first open — the set is committed in
 `.vscode/extensions.json`. See
-[VSCode setup](https://github.com/iglootools/common-guidelines/blob/main/ide.md#vscode) in the
+[VSCode setup](https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#vscode) in the
 shared guidelines for what each one is for, and which committed settings silently stop working
 without it.
 
 No interpreter selection is needed: `.vscode/settings.json` and `[tool.pyright]` in `pyproject.toml`
 already point the editor at `.venv`. See
-[Pyright environment resolution](https://github.com/iglootools/common-guidelines/blob/main/ide.md#pyright-environment-resolution)
+[Pyright environment resolution](https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#pyright-environment-resolution)
 in the shared guidelines for what those settings do, how to verify them, and why a window reload is
 required after changing them.
 
@@ -70,6 +70,6 @@ or [every project at once](https://github.com/iglootools/common-guidelines#updat
 — whenever a new version is released. The commands live there so they are corrected in one place.
 
 Install the Pyright LSP plugin so Claude resolves symbols instead of grepping for them. Follow
-[Claude Code setup in the shared guidelines](https://github.com/iglootools/common-guidelines/blob/main/ide.md#claude-code)
+[Claude Code setup in the shared guidelines](https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#claude-code)
 once the virtualenv step above is done — it covers the install command, why `pyright-langserver` has
 to come from this project's `.venv`, and how to verify that it does.
