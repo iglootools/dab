@@ -43,33 +43,25 @@
    brew install pv
    ```
 
-## VSCode Setup
+## Editor and Claude Code Setup
 
-Accept the recommended extensions when VSCode prompts on first open — the set is committed in
-`.vscode/extensions.json`. See
-[VSCode setup](https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#vscode) in the
-shared guidelines for what each one is for, and which committed settings silently stop working
-without it.
+The repository is already configured; what is left is per-machine installation.
 
-No interpreter selection is needed: `.vscode/settings.json` and `[tool.pyright]` in `pyproject.toml`
-already point the editor at `.venv`. See
-[Pyright environment resolution](https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#pyright-environment-resolution)
-in the shared guidelines for what those settings do, how to verify them, and why a window reload is
-required after changing them.
+- **Extensions** — accept the prompt on first open; the set is committed in
+  [.vscode/extensions.json](../.vscode/extensions.json). [What each one is for, and which
+  committed settings silently stop working without it][vscode].
+- **Interpreter** — nothing to select. `.vscode/settings.json` and `[tool.pyright]` already
+  point at `.venv`. [What those settings do, and why a reload is needed after changing
+  them][pyright].
+- **Plugins** — `.claude/settings.json` enables `iglootools` for the shared guidelines and
+  `pyright-lsp` so Claude resolves symbols instead of grepping for them. A plugin the project
+  enables still installs once per machine: [install per project][install], then
+  [update one][update-one] or [all at once][update-all] on each release. For `pyright-lsp` see
+  [Claude Code setup][claude-code] — it needs the virtualenv step above done first.
 
-## Claude Code Setup
-
-Both plugins below are enabled for this repository in `.claude/settings.json`, but a plugin the
-project enables still has to be installed once per machine.
-
-For the shared iglootools guidelines, follow
-[Install it per project](https://github.com/iglootools/common-guidelines#install-it-per-project-not-per-user)
-in the shared guidelines, then
-[Updating one project](https://github.com/iglootools/common-guidelines#updating-one-project) —
-or [every project at once](https://github.com/iglootools/common-guidelines#updating-every-project)
-— whenever a new version is released. The commands live there so they are corrected in one place.
-
-Install the Pyright LSP plugin so Claude resolves symbols instead of grepping for them. Follow
-[Claude Code setup in the shared guidelines](https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#claude-code)
-once the virtualenv step above is done — it covers the install command, why `pyright-langserver` has
-to come from this project's `.venv`, and how to verify that it does.
+[vscode]: https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#vscode
+[pyright]: https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#pyright-environment-resolution
+[claude-code]: https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#claude-code
+[install]: https://github.com/iglootools/common-guidelines#install-it-per-project-not-per-user
+[update-one]: https://github.com/iglootools/common-guidelines#updating-one-project
+[update-all]: https://github.com/iglootools/common-guidelines#updating-every-project

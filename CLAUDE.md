@@ -12,30 +12,10 @@ Domain model (volumes, endpoints, syncs, snapshots) and configuration reference:
 
 Runtime behavior, design decisions, and external commands reference: @docs/internals.md
 
-## Guidelines and Workflow
+## Guidelines
 
-Before writing any code, apply the guidelines at write time, not as a post-hoc review. Walk the implementation checklist item by item before considering a task done.
-
-Common guidelines shared across iglootools projects come from the `iglootools` plugin, enabled for
-this repository in `.claude/settings.json`. It loads the always-on guidelines into every session,
-and reads the file-triggered ones when a change reaches them. See
-@docs/setup-development-environment.md to install it.
-
-Project-specific guidelines: @docs/guidelines.md
-
-Implementation checklists: @docs/implementation-checklists.md
-
-## Code Navigation
-
-Answer symbol questions with the Pyright LSP, not with text search: where something is defined, what
-references or calls it, what type it returns, what a module contains. The `pyright-lsp` plugin is
-enabled at project scope in `.claude/settings.json`. The same name appears in several modules here
-(`show`, `check`, `prune_snapshots`, `run_remote_command`), so a symbol answer must come from the
-import graph rather than from text matches.
-
-Reach for `grep`/`Glob` when the target is not a resolvable Python symbol — string literals, config
-keys, YAML/TOML, comments, filenames, or a name that may not resolve. The LSP does not jump into
-`site-packages` either, so third-party definitions still need the file read directly.
+Shared iglootools guidelines come from the `iglootools` plugin, enabled in
+`.claude/settings.json` and installed once per machine: @docs/setup-development-environment.md
 
 ## Build & Test Commands
 
