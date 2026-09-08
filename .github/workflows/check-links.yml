@@ -19,13 +19,17 @@ concurrency:
 jobs:
   check-links:
     permissions:
-      # Must be granted here. `permissions` in the called workflow is a ceiling on what the
-      # caller allowed, not a grant of its own, so omitting this 403s the issue step on the
-      # first run that finds a broken link — the run you most wanted the report from.
-      issues: write
+      # Both must be granted here. `permissions` in the called workflow is a ceiling on what the
+      # caller allowed, not a grant of its own, and declaring any permission zeroes the ones
+      # left out — so dropping either breaks the shared job rather than tightening it.
+      # This repository is public, so the clone would survive without contents: read via
+      # checkout's anonymous fallback. Declared anyway: the shared job requires it, and a
+      # repository that later goes private would otherwise start failing at checkout.
+      contents: read # actions/checkout
+      issues: write # filing the report issue
     # The job itself lives in common-guidelines so a fix reaches every project at once. The
     # hosts this repository excludes stay in its own .lycheeignore, which the shared job reads
     # because checkout there resolves to the calling repository. Pinned to a commit SHA for the
     # reason project-setup.md gives for actions, with the version in the trailing comment so
     # Renovate can raise the update.
-    uses: iglootools/common-guidelines/.github/workflows/reusable-check-links.yml@4e8d3ac64d42331d92f210751a6fff70a9e1da12 # v1.1.1
+    uses: iglootools/common-guidelines/.github/workflows/reusable-check-links.yml@debec43dbc046d565d9af9ffb75e0177f3fb1e75 # v1.1.3
