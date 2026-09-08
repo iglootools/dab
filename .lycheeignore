@@ -12,3 +12,10 @@ https://www\.reddit\.com/.*
 # timing out per run, costing CI time and burying the real errors in the weekly report.
 # Re-test by dropping this entry and watching one scheduled run.
 https://asciinema\.org/.*
+
+# freedesktop.org's wiki answers 418 "I'm a teapot" to GitHub-hosted runners — its anti-bot
+# response, not a real status. It serves 200 to an ordinary client, and the four citations of the
+# udisks page in docs/ are all valid. Not a User-Agent problem: from a normal connection it
+# returns 200 both with no UA and with lychee's own, and 418 with a browser UA, so it is keying
+# on address reputation rather than on the client string.
+https://www\.freedesktop\.org/.*
