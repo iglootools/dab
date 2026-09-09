@@ -1,0 +1,37 @@
+name: uv-dependency-submission
+
+# GitHub's dependency graph does not parse uv.lock, so without this the graph is empty — and
+# Dependabot alerts come from the graph while security updates come from alerts, which means
+# both are silently off. The poetry -> uv migration is what turned them off here.
+
+on:
+  # Only when the lockfile actually changes, plus a weekly floor so a broken submission
+  # surfaces on its own rather than waiting for the next dependency bump.
+  push:
+    branches:
+      - main
+    paths:
+      - '**/uv.lock'
+  schedule:
+    - cron: "30 18 * * 1"
+  workflow_dispatch:
+
+# Nothing at workflow level: the write grant below is scoped to the one job that needs it.
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    permissions:
+      # Must be granted here — `permissions` in the called workflow is a ceiling on what the
+      # caller allowed, not a grant of its own. It cannot be narrower: there is no
+      # dependency-graph scope and the snapshot API sits behind contents: write.
+      contents: write
+    # This workflow exists on its own, containing nothing else, because the shared job runs a
+    # third-party action under that grant. The action is pinned by commit SHA in
+    # common-guidelines so it is reviewed once there — and a bump to that pin is not a routine
+    # dependency update. See the shared workflow's header before approving one.
+    uses: iglootools/common-guidelines/.github/workflows/reusable-uv-dependency-submission.yml@10a2c68ed29d39819c45c719437b5d8501189fb7 # v1.7.0
