@@ -7,7 +7,7 @@ Additionally, `nbkp demo` (or `nbkp-demo`) provides helpers for manual testing/Q
 Run automated tests and checks (no external dependencies):
 ```bash
 # mise tasks
-mise run check              # Run all checks: format + lint + type-check + compat-check + lock-check + lock-check-uv + clidocs-check + configdocs-check + depgraph-check
+mise run check              # Run all checks: format-check + lint + type-check + compat-check + lock-check + lock-check-uv + clidocs-check + configdocs-check + depgraph-check
 mise run check-all          # Run all checks: regular checks + all tests
 
 mise run test-all           # All tests
@@ -23,7 +23,8 @@ mise run test-integration-docker  # All Docker-based tests (e2e + integration)
 mise run test-integration-docker-btrfs   # Local btrfs tests inside Docker (privileged)
 mise run test-integration-fs     # Filesystem integration tests
 
-mise run format             # ruff format
+mise run format             # ruff format (rewrites files)
+mise run format-check       # ruff format --check (verifies only; what check runs)
 mise run lint               # ruff check
 mise run type-check         # pyright
 mise run compat-check       # vermin (enforce Python >=3.12 compatibility — see Python version policy below)
