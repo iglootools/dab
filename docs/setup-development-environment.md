@@ -59,9 +59,9 @@ The repository is already configured; what is left is per-machine installation.
   [update one][update-one] or [all at once][update-all] on each release. For `pyright-lsp` see
   [Claude Code setup][claude-code] — it needs the virtualenv step above done first.
 
-[vscode]: https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#vscode
-[pyright]: https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#pyright-environment-resolution
-[claude-code]: https://github.com/iglootools/common-guidelines/blob/main/guidelines/ide.md#claude-code
+[vscode]: https://github.com/iglootools/common-guidelines/blob/main/guidelines/project-setup/ide.md#vscode
+[pyright]: https://github.com/iglootools/common-guidelines/blob/main/guidelines/project-setup/ide.md#pyright-environment-resolution
+[claude-code]: https://github.com/iglootools/common-guidelines/blob/main/guidelines/project-setup/claude-code.md
 [install]: https://github.com/iglootools/common-guidelines#install-it-per-project-not-per-user
 [update-one]: https://github.com/iglootools/common-guidelines#updating-one-project
 [update-all]: https://github.com/iglootools/common-guidelines#updating-every-project
