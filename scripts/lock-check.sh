@@ -2,7 +2,7 @@
 # Check that mise.lock is up to date with mise.toml.
 #
 # Shared across iglootools projects. The canonical copy is scripts/lock-check.sh in
-# iglootools/common-guidelines, alongside the guideline that explains it; project copies are
+# iglootools/common, alongside the guideline that explains it; project copies are
 # verbatim, so fix it there and re-copy rather than editing one in place.
 #
 # Unlike `uv lock --check`, mise has no read-only freshness check, so this regenerates the
