@@ -7,7 +7,7 @@
     "iglootools-plugins": {
       "source": {
         "source": "github",
-        "repo": "iglootools/common-guidelines"
+        "repo": "iglootools/common"
       }
     }
   }

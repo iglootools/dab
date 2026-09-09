@@ -12,7 +12,7 @@ on:
 concurrency:
   # A link check only reads and reports, so a run in flight can be abandoned and redone. This
   # stays here rather than moving into the shared workflow because concurrency governs the run
-  # these triggers create. See the concurrency section of project-setup.md in common-guidelines.
+  # these triggers create. See the concurrency section of project-setup.md in iglootools/common.
   group: ${{ github.workflow }}-${{ github.ref == 'refs/heads/main' && format('main-{0}', github.event.workflow_run.head_sha || github.sha) || github.ref }}
   cancel-in-progress: true
 
@@ -27,9 +27,9 @@ jobs:
       # repository that later goes private would otherwise start failing at checkout.
       contents: read # actions/checkout
       issues: write # filing the report issue
-    # The job itself lives in common-guidelines so a fix reaches every project at once. The
+    # The job itself lives in iglootools/common so a fix reaches every project at once. The
     # hosts this repository excludes stay in its own .lycheeignore, which the shared job reads
     # because checkout there resolves to the calling repository. Pinned to a commit SHA for the
     # reason project-setup.md gives for actions, with the version in the trailing comment so
     # Renovate can raise the update.
-    uses: iglootools/common-guidelines/.github/workflows/reusable-check-links.yml@1d09a131ac5e8a2bc969b0bea48513ae4bb40637 # v1.5.0
+    uses: iglootools/common/.github/workflows/reusable-check-links.yml@1d09a131ac5e8a2bc969b0bea48513ae4bb40637 # v1.5.0
