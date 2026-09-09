@@ -111,9 +111,9 @@ Which maps to:
 ## Contribute
 
 Practical information:
-- [docs/setup-development-environment.md](https://github.com/iglootools/nbkp/blob/main/docs/setup-development-environment.md) — development setup
-- [docs/building-and-testing.md](https://github.com/iglootools/nbkp/blob/main/docs/building-and-testing.md) — running tests and checks
-- [docs/releasing-and-publishing.md](https://github.com/iglootools/nbkp/blob/main/docs/releasing-and-publishing.md) — releases and PyPI publishing
+- [docs/project-setup.md](https://github.com/iglootools/nbkp/blob/main/docs/project-setup.md) — development setup
+- [docs/build-test.md](https://github.com/iglootools/nbkp/blob/main/docs/build-test.md) — running tests and checks
+- [docs/release-publish.md](https://github.com/iglootools/nbkp/blob/main/docs/release-publish.md) — releases and PyPI publishing
 - [docs/guidelines.md](https://github.com/iglootools/nbkp/blob/main/docs/guidelines.md) — project-specific guidelines
 - [common](https://github.com/iglootools/common) — shared coding guidelines
 
