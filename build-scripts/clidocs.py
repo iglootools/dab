@@ -25,9 +25,9 @@ def _generate_cli_docs() -> str:
     """Run typer utils docs and return the markdown output."""
     result = subprocess.run(
         [sys.executable, "-m", "typer", "nbkp.cli", "utils", "docs", "--name", "nbkp"],
+        check=False,  # returncode is inspected below
         capture_output=True,
         text=True,
-        check=False,
     )
     if result.returncode != 0:
         print(f"typer utils docs failed:\n{result.stderr}", file=sys.stderr)
