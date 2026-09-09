@@ -76,7 +76,7 @@ CI currently tests only the 3.12 floor — the 3.14 matrix entry in
 `.github/workflows/test.yml` is commented out to save CI minutes.
 
 Raising the floor to 3.14 (Ubuntu 26.04 LTS) is under consideration; see the
-[Python Version Policy](https://github.com/iglootools/common-guidelines/blob/main/guidelines/python.md#python-version-policy)
+[Python Version Policy](https://github.com/iglootools/common-guidelines/blob/main/guidelines/project-setup/python-tooling.md#python-version-policy)
 for the full rationale and the list of knobs that must move together.
 
 ### Parallel test execution

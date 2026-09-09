@@ -9,7 +9,7 @@
 The 3.12 floor tracks Ubuntu 24.04 LTS, whose system `python3` is 3.12 — so nbkp
 installs on the current LTS without a PPA or a source build. Ubuntu 26.04 LTS ships
 3.14, which is also supported. See the
-[Python Version Policy](https://github.com/iglootools/common-guidelines/blob/main/guidelines/python.md#python-version-policy)
+[Python Version Policy](https://github.com/iglootools/common-guidelines/blob/main/guidelines/project-setup/python-tooling.md#python-version-policy)
 for how both versions are maintained.
 
 ## Install with uv
