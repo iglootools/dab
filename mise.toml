@@ -125,9 +125,9 @@ mise deps install uv --force
 """
 
 [tasks.check]
-description = "Run all checks (format, lint, type-check, compat-check, lock-check, lock-check-uv, clidocs-check, configdocs-check, depgraph-check)"
+description = "Run all checks (format-check, lint, type-check, compat-check, lock-check, lock-check-uv, clidocs-check, configdocs-check, depgraph-check)"
 run = [
-  { task = "format" },
+  { task = "format-check" },
   { task = "lint" },
   { task = "type-check" },
   { task = "compat-check" },
@@ -259,8 +259,18 @@ run = [
 
 # Lint / Formatting Tasks
 [tasks.format]
-description = "Format code with ruff"
+description = "Format code with ruff (rewrites files; see format-check to verify only)"
 run = "uv run --no-sync ruff format ."
+
+# The variant `check` depends on, and the reason there are two. `ruff format` rewrites files
+# and exits 0 whether or not it changed anything, so as a gate it cannot fail: on CI it
+# reformatted inside the runner, threw the result away with the workspace, and reported
+# success, leaving formatting the one member of `check` that was never actually enforced.
+# `--check` reports the same diff but writes nothing and exits non-zero, so run `mise run
+# format` to fix what it reports.
+[tasks.format-check]
+description = "Check that code is formatted (fails instead of reformatting; fix with `mise run format`)"
+run = "uv run --no-sync ruff format --check ."
 
 [tasks.lint]
 description = "Run ruff linting"
